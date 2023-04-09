@@ -1,4 +1,4 @@
-package com.pharmatrail.subject
+package com.whiteshadow.architecture
 
 import androidx.annotation.NonNull;
 import io.flutter.embedding.android.FlutterActivity

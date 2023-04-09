@@ -9,7 +9,7 @@
       "client_info": {
         "mobilesdk_app_id": "1:691168697395:android:dfc1a606f25df580f55746",
         "android_client_info": {
-          "package_name": "com.whiteshadow.baseApp.dev"
+          "package_name": "com.whiteshadow.architecture.dev"
         }
       },
       "oauth_client": [

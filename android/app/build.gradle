@@ -25,6 +25,7 @@ if (flutterVersionName == null) {
 apply plugin: 'com.google.gms.google-services'
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
 apply from: "$flutterRoot/packages/flutter_tools/gradle/flutter.gradle"
 
 def keystoreProperties = new Properties()
@@ -34,7 +35,7 @@ if (keystorePropertiesFile.exists()) {
 }
 
 android {
-    compileSdkVersion 31
+    compileSdkVersion 33
 
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
@@ -54,9 +55,9 @@ android {
     }
 
     defaultConfig {
-        applicationId "com.whiteshadow.baseApp"
+        applicationId "com.whiteshadow.architecture"
         minSdkVersion 23
-        targetSdkVersion 31
+        targetSdkVersion 33
         multiDexEnabled true
         versionCode flutterVersionCode.toInteger()
         versionName flutterVersionName
@@ -67,17 +68,6 @@ android {
 
     signingConfigs {
         release {
-            // if (System.getenv()["CI"]) { // CI=true is exported by Codemagic
-            //     storeFile file(System.getenv()["FCI_KEYSTORE_PATH"])
-            //     storePassword System.getenv()["FCI_KEYSTORE_PASSWORD"]
-            //     keyAlias System.getenv()["FCI_KEY_ALIAS"]
-            //     keyPassword System.getenv()["FCI_KEY_PASSWORD"]
-            // } else {
-            //     storeFile file("/Users/yurashevelev/pharmatrail.jks")
-            //     storePassword "pharmatrail2021"
-            //     keyAlias "pharmatrail"
-            //     keyPassword "pharmatrail2021"
-            // }
         }
     }
     
@@ -91,17 +81,17 @@ android {
     productFlavors {
         production {
             dimension "app"
-            applicationId "com.whiteshadow.baseApp"
+            applicationId "com.whiteshadow.architecture"
             resValue "string", "app_name", "BaseApp"
         }
         staging {
             dimension "app"
-            applicationId "com.whiteshadow.baseApp.stage"
+            applicationId "com.whiteshadow.architecture.stage"
             resValue "string", "app_name", "BaseApp Staging"
         }
         develop {
             dimension "app"
-            applicationId "com.whiteshadow.baseApp.dev"
+            applicationId "com.whiteshadow.architecture.dev"
             resValue "string", "app_name", "BaseApp Develop"
         }
     }
@@ -124,7 +114,11 @@ flutter {
 
 dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
-    implementation 'com.android.support:multidex:1.0.3'
-    implementation 'com.google.firebase:firebase-analytics'
-    implementation platform('com.google.firebase:firebase-bom:29.0.0')
+    implementation 'com.android.support:multidex:2.0.1'
+
+    /// Import the Firebase BoM
+    implementation platform('com.google.firebase:firebase-bom:31.2.0')
+    /// Add the dependency for the Firebase SDK for Google Analytics
+    /// When using the BoM, don't specify versions in Firebase dependencies
+    implementation 'com.google.firebase:firebase-messaging'
 }

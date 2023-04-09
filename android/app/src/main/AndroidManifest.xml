@@ -1,6 +1,6 @@
 <!-- Manifest -->
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.whiteshadow.baseApp">
+    package="com.whiteshadow.architecture">
     
     <!-- Permissions -->
     <uses-permission android:name="android.permission.INTERNET"/>
